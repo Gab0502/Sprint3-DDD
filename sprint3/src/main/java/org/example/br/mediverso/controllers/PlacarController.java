@@ -4,6 +4,7 @@ import org.example.br.mediverso.models.Placar;
 import org.example.br.mediverso.services.PlacarService.CreatePlacarService;
 import org.example.br.mediverso.services.PlacarService.GetPlacar;
 import org.example.br.mediverso.services.PlacarService.GetPlacarById;
+import org.example.br.mediverso.services.PlacarService.GetPlacarByAlunoId;
 
 import java.util.List;
 
@@ -12,12 +13,14 @@ public class PlacarController {
     private final CreatePlacarService createPlacarService;
     private final GetPlacar getPlacarService;
     private final GetPlacarById getPlacarByIdService;
+    private final GetPlacarByAlunoId getPlacarByAlunoId;
 
     // Construtor para inicializar os serviços
     public PlacarController() {
         this.createPlacarService = new CreatePlacarService();
         this.getPlacarService = new GetPlacar();
         this.getPlacarByIdService = new GetPlacarById();
+        this.getPlacarByAlunoId = new GetPlacarByAlunoId();
     }
 
     // Método para criar um novo placar
@@ -63,6 +66,25 @@ public class PlacarController {
         return placar;
     }
 
+    public List<Placar> getPlacarByUserId(int userId) {
+        List<Placar> placares = getPlacarByAlunoId.getPlacarByAlunoid(userId); // Chamando o método que retorna uma lista
+
+        if (placares.isEmpty()) {
+            System.out.println("Nenhuma pontuação registrada.");
+        } else {
+            for (Placar placar : placares) {
+                System.out.println("ID: " + placar.getId());
+                System.out.println("UserId: " + placar.getUserId());
+                System.out.println("JogoId: " + placar.getJogoId());
+                System.out.println("Pontuação: " + placar.getPontuacao());
+                System.out.println("Replay Path: " + placar.getReplayPath());
+                System.out.println("-----------------------------"); // Separador para visualização
+            }
+        }
+
+        return placares; // Retorna a lista de placares
+    }
+
     public static void main(String[] args) {
         PlacarController controller = new PlacarController();
 
@@ -71,5 +93,7 @@ public class PlacarController {
         controller.getAllPlacares();
 
         controller.getPlacarById(1);
+
+        controller.getPlacarByUserId(1);
     }
 }
