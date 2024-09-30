@@ -2,6 +2,7 @@ package org.example.br.mediverso.pages;
 
 import org.example.br.mediverso.controllers.JogoController;
 import org.example.br.mediverso.controllers.PlacarController; // Importando o PlacarController
+import org.example.br.mediverso.controllers.TurmaUserController;
 import org.example.br.mediverso.models.Jogo;
 import org.example.br.mediverso.models.Placar;
 import org.example.br.mediverso.models.AuthContext;
@@ -13,21 +14,50 @@ import java.util.UUID;
 public class AlunoPage {
 
     private final JogoController jogoController;
-    private final PlacarController placarController; // Adicionando o PlacarController
-    private final AuthContext authContext; // Adicionando o AuthContext
+    private final PlacarController placarController;
+    private final AuthContext authContext;
+    private boolean loggedIn;
+
 
     public AlunoPage(AuthContext authContext) {
-        this.jogoController = new JogoController();  // Integrando o controller de jogos
-        this.placarController = new PlacarController(); // Inicializando o PlacarController
-        this.authContext = authContext; // Recebendo o AuthContext
+        this.jogoController = new JogoController();
+        this.placarController = new PlacarController();
+        this.authContext = authContext;
+        this.loggedIn = true;
+
     }
 
     public void showAlunoScreen() {
-        System.out.println("Bem-vindo à página do Aluno!");
-        System.out.println("ID do Usuário: " + authContext.getNome()); // Exemplo de uso do AuthContext
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Bem-vindo à página do Professor MEDIVERSO, " + authContext.getNome() + "!");
+        while (loggedIn) {
+            System.out.println("\n--- Menu Principal ---");
+            System.out.println("1. Jogar Simulação");
+            System.out.println("2. Ver Minhas Pontuações");
+            System.out.println("3. Logout");
+
+            System.out.print("\nEscolha uma opção: ");
+            int opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    jogarSimulacao();
+                    break;
+                case 2:
+                    verPontuacoes();
+                    break;
+                case 3:
+                    logout();
+                    break;
+                default:
+                    System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+                    break;
+            }
+        }
     }
 
-    public void jogarSimulacao() { // Removendo userId como parâmetro
+    public void jogarSimulacao() {
         Scanner scanner = new Scanner(System.in);
 
         List<Jogo> jogos = jogoController.getAllJogos();
@@ -62,7 +92,6 @@ public class AlunoPage {
         String replayPath = "videos/replays/" + UUID.randomUUID().toString() + ".mp4";
         System.out.println("Replay gerado em: " + replayPath);
 
-        // Usando o PlacarController para criar o placar
         placarController.createPlacar(authContext.getUserId(), jogoEscolhido.getId(), pontuacao, replayPath);
 
         System.out.println("\nJogo jogado com sucesso!");
@@ -87,5 +116,8 @@ public class AlunoPage {
             }
         }
     }
-
+    public void logout() {
+        System.out.println("Logout efetuado com sucesso. Até a próxima, " + authContext.getNome() + "!");
+        loggedIn = false;
+    }
 }

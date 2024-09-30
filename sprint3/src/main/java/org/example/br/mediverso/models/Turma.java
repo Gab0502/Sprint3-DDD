@@ -4,6 +4,7 @@ public class Turma {
     private int id;
     private String nome;
     private boolean ativo;
+    private int professorId;
 
     // Getters e Setters
     public int getId() { return id; }
@@ -14,4 +15,8 @@ public class Turma {
 
     public boolean isAtivo() { return ativo; }
     public void setAtivo(boolean ativo) { this.ativo = ativo; }
+
+    public int getProfessorId() { return professorId; }
+    public void setProfessorId(int professorId) { this.professorId = professorId; }
+
 }

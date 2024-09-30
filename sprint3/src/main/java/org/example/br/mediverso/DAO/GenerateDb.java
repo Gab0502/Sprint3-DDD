@@ -33,10 +33,13 @@ public class GenerateDb {
                 String createTurmaTable = "CREATE TABLE tbTurma (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                         "nome TEXT NOT NULL," +
-                        "ativo BOOLEAN);";
+                        "ativo BOOLEAN," +
+                        "professorId INTEGER NOT NULL," +
+                        "FOREIGN KEY (professorId) REFERENCES tbUser(id));";
                 stmt.execute(createTurmaTable);
                 System.out.println("Table tbTurma created.");
             }
+
 
             if (!tableExists(connection, "tbTurmaUser")) {
                 String createTurmaUserTable = "CREATE TABLE tbTurmaUser (" +
@@ -150,8 +153,8 @@ public class GenerateDb {
         }
 
         // Inserindo uma turma fictícia
-        String insertTurmaQuery = "INSERT INTO tbTurma (nome, ativo) VALUES " +
-                "('Turma de Laparoscopia', true);";
+        String insertTurmaQuery = "INSERT INTO tbTurma (nome, ativo, professorId) VALUES " +
+                "('Turma de Laparoscopia', true, 1);";
 
         try (Statement stmt = connection.createStatement()) {
             stmt.executeUpdate(insertTurmaQuery);

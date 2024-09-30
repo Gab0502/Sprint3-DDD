@@ -20,7 +20,7 @@ public class CreatePlacarService {
         try (Connection connection = connectionService.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, placar.getUserId());
-            stmt.setInt(3, placar.getJogoId());
+            stmt.setInt(2, placar.getJogoId());
             stmt.setInt(3, placar.getPontuacao());
             stmt.setString(4, placar.getReplayPath());
             stmt.executeUpdate();

@@ -71,15 +71,6 @@ public class PlacarController {
 
         if (placares.isEmpty()) {
             System.out.println("Nenhuma pontuação registrada.");
-        } else {
-            for (Placar placar : placares) {
-                System.out.println("ID: " + placar.getId());
-                System.out.println("UserId: " + placar.getUserId());
-                System.out.println("JogoId: " + placar.getJogoId());
-                System.out.println("Pontuação: " + placar.getPontuacao());
-                System.out.println("Replay Path: " + placar.getReplayPath());
-                System.out.println("-----------------------------"); // Separador para visualização
-            }
         }
 
         return placares; // Retorna a lista de placares

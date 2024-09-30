@@ -14,7 +14,7 @@ public class Main {
         LoginPage loginPage = new LoginPage();
         AuthContext authContext = loginPage.showLoginScreen();
 
-        ProfessorPage professorPage = new ProfessorPage();
+        ProfessorPage professorPage = new ProfessorPage(authContext);
         AlunoPage alunoPage = new AlunoPage(authContext);
 
         if (authContext != null) {
