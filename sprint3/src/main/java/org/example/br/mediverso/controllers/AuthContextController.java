@@ -18,9 +18,7 @@ public class AuthContextController {
         // Verifica se a autenticação foi bem-sucedida
         if (authContext != null) {
             System.out.println("Login realizado com sucesso.");
-            System.out.println("Nome: " + authContext.getNome());
-            System.out.println("Email: " + authContext.getEmail());
-            System.out.println("Professor: " + (authContext.isProfessor() ? "Sim" : "Não"));
+
         } else {
             System.out.println("Falha no login: e-mail ou senha incorretos.");
         }

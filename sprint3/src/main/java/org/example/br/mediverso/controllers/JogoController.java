@@ -23,26 +23,15 @@ public class JogoController {
 
         if (jogos.isEmpty()) {
             System.out.println("Nenhum jogo encontrado.");
-        } else {
-            for (Jogo jogo : jogos) {
-                System.out.println("ID: " + jogo.getId());
-                System.out.println("Nome: " + jogo.getNome());
-                System.out.println("Pontuacao Maxima: " + jogo.getPontuacaoMax());
-                System.out.println("-----------------------------");
-            }
         }
         return jogos;
     }
 
     // Método para buscar um jogo por ID
     public Jogo getJogoById(int id) {
-        System.out.println("=== Buscar Jogo por ID ===");
         Jogo jogo = getJogoByIdService.getJogoById(id);
 
         if (jogo != null) {
-            System.out.println("ID: " + jogo.getId());
-            System.out.println("Nome: " + jogo.getNome());
-            System.out.println("Pontuacao Maxima: " + jogo.getPontuacaoMax());
             return jogo;
         } else {
             System.out.println("Jogo não encontrado.");

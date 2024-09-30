@@ -44,11 +44,7 @@ public class UserController {
     public User getUserById(int id) {
         User user = getUserByIdService.getUserById(id);
 
-        if (user != null) {
-            System.out.println("ID: " + user.getId());
-            System.out.println("Nome: " + user.getNome());
-            System.out.println("Email: " + user.getEmail());
-        } else {
+        if (user == null) {
             System.out.println("Usuário não encontrado.");
         }
         return user;

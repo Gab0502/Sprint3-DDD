@@ -82,7 +82,7 @@ public class ProfessorPage {
 
         System.out.println("\n--- Jogos Disponíveis ---");
         for (int i = 0; i < jogos.size(); i++) {
-            System.out.println((i + 1) + ". " + jogos.get(i).getNome());
+            System.out.println((i + 1) + ". " + jogos.get(i).getNome() + " pontuação maxima " + jogos.get(i).getPontuacaoMax());
         }
 
         System.out.print("\nEscolha o número do jogo que deseja jogar: ");
@@ -147,7 +147,6 @@ public class ProfessorPage {
 
             // Obter usuários na turma
             turmaUserController.getUsersByTurmaId(turmas.getId());
-                System.out.println("Usuários encontrados na turma com ID " + turmas.getId() + ":");
 
                 System.out.print("Digite o ID do aluno para ver suas pontuações (ou 0 para voltar): ");
                 int alunoId = scanner.nextInt();

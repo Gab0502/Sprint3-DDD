@@ -73,7 +73,7 @@ public class PlacarController {
             System.out.println("Nenhuma pontuação registrada.");
         }
 
-        return placares; // Retorna a lista de placares
+        return placares;
     }
 
     public static void main(String[] args) {
